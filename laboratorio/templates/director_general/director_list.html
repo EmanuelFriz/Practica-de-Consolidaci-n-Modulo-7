@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Directores Generales{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Directores Generales</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Laboratorio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for director in directores %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ director.nombre }}</td>
+            <td>{{ director.especialidad }}</td>
+            <td>{{ director.laboratorio.nombre }}</td>
+            <td>
+                <a href="{% url 'director_detail' director.id %}" class="btn btn-primary btn-sm">Detalles</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'laboratorio_list' %}" class="btn btn-secondary">Volver a Laboratorios</a>
+{% endblock %}
