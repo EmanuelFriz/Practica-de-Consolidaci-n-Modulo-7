@@ -1,0 +1,39 @@
+1. Obtener todos los objetos de Laboratorio, DirectorGeneral y Producto
+
+from laboratorio.models import Laboratorio, DirectorGeneral, Producto
+
+# Obtener todos los objetos
+laboratorios = Laboratorio.objects.all()
+directores_generales = DirectorGeneral.objects.all()
+productos = Producto.objects.all()
+
+print("Laboratorios:", laboratorios)
+print("Directores Generales:", directores_generales)
+print("Productos:", productos)
+
+2. Obtener el laboratorio del producto cuyo nombre es 'Producto 1'
+
+# Producto específico
+producto = Producto.objects.get(nombre='Producto 1')
+laboratorio_del_producto = producto.laboratorio
+
+print("Laboratorio del producto 'Producto 1':", laboratorio_del_producto)
+
+3. Ordenar todos los productos por nombre y mostrar nombre y laboratorio
+
+# Ordenar productos por nombre
+productos_ordenados = Producto.objects.order_by('nombre')
+
+# Mostrar nombre y laboratorio
+for producto in productos_ordenados:
+    print(f"Producto: {producto.nombre}, Laboratorio: {producto.laboratorio.nombre}")
+
+4. Imprimir los laboratorios de todos los productos
+
+# Imprimir laboratorios de los productos
+laboratorios_productos = {producto.laboratorio for producto in Producto.objects.all()}
+
+print("Laboratorios relacionados con productos:")
+for laboratorio in laboratorios_productos:
+    print(laboratorio.nombre)
+
